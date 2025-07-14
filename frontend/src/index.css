@@ -87,7 +87,56 @@ code {
     display: none;             /* Safari and Chrome */
 }
 
-/* Enhanced animations for premium feel */
+/* Enhanced animations for ritualistic experience */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes expand {
+    from {
+        width: 0;
+    }
+    to {
+        width: 4rem;
+    }
+}
+
+@keyframes cosmic-pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
 @keyframes animate-in {
     from {
         opacity: 0;
@@ -118,6 +167,27 @@ code {
     }
 }
 
+/* Animation classes */
+.animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+}
+
+.animate-fade-in-up {
+    animation: fade-in-up 1s ease-out forwards;
+}
+
+.animate-expand {
+    animation: expand 1s ease-out forwards;
+}
+
+.cosmic-pulse {
+    animation: cosmic-pulse 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+    animation: shimmer 2s ease-in-out infinite;
+}
+
 /* Premium hover effects */
 .hover\:scale-101:hover {
     transform: scale(1.01);
@@ -131,11 +201,15 @@ code {
     transform: scale(1.05);
 }
 
+.hover\:scale-110:hover {
+    transform: scale(1.1);
+}
+
 /* Smooth transitions for premium feel */
 * {
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
+    transition-duration: 300ms;
 }
 
 /* Premium text selection */
@@ -160,6 +234,11 @@ code {
 
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(96, 246, 255, 0.4);
+}
+
+/* Gradient utilities */
+.bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
 }
 
 
