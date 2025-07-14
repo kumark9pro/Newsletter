@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from './ui/card';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -8,6 +8,7 @@ import QuickLogSection from './QuickLogSection';
 import LogEntryCard from './LogEntryCard';
 import DidYouKnowSection from './DidYouKnowSection';
 import LiveDataSection from './LiveDataSection';
+import ScrollReveal from './ScrollReveal';
 import { mockData } from '../data/mockData';
 
 const Newsletter = () => {
