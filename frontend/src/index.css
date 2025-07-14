@@ -84,11 +84,11 @@ code {
     display: none;             /* Safari and Chrome */
 }
 
-/* Custom animations */
+/* Enhanced animations */
 @keyframes animate-in {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
@@ -97,17 +97,17 @@ code {
 }
 
 .animate-in {
-    animation: animate-in 0.3s ease-out;
+    animation: animate-in 0.6s ease-out;
 }
 
 .slide-in-from-top {
-    animation: slide-in-from-top 0.3s ease-out;
+    animation: slide-in-from-top 0.6s ease-out;
 }
 
 @keyframes slide-in-from-top {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-20px);
     }
     to {
         opacity: 1;
@@ -115,13 +115,49 @@ code {
     }
 }
 
-/* Custom hover effects */
+/* Enhanced hover effects */
 .hover\:scale-102:hover {
     transform: scale(1.02);
 }
 
 .hover\:scale-105:hover {
     transform: scale(1.05);
+}
+
+/* Neon glow effects */
+.neon-glow {
+    filter: drop-shadow(0 0 10px currentColor);
+}
+
+.neon-glow-strong {
+    filter: drop-shadow(0 0 20px currentColor);
+}
+
+/* Custom cosmic animations */
+@keyframes cosmic-pulse {
+    0%, 100% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
+.cosmic-pulse {
+    animation: cosmic-pulse 2s ease-in-out infinite;
+}
+
+/* Enhanced gradient backgrounds */
+.cosmic-gradient {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+}
+
+/* Text selection styling */
+::selection {
+    background: rgba(96, 246, 255, 0.3);
+    color: #f8fafc;
 }
 
 
