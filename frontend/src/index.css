@@ -123,6 +123,21 @@ code {
     }
 }
 
+@keyframes float-up {
+    0% {
+        opacity: 0;
+        transform: translateY(0) scale(0.5);
+    }
+    20% {
+        opacity: 1;
+        transform: translateY(-20px) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-200px) scale(0.5);
+    }
+}
+
 @keyframes fade-in {
     from {
         opacity: 0;
@@ -227,6 +242,10 @@ code {
 
 .animate-shimmer {
     animation: shimmer 4s ease-in-out infinite;
+}
+
+.animate-float-up {
+    animation: float-up 6s ease-out infinite;
 }
 
 /* Premium hover effects */
