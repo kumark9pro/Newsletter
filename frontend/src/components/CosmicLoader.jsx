@@ -3,26 +3,32 @@ import React, { useState, useEffect } from 'react';
 const CosmicLoader = ({ onComplete }) => {
   const [stage, setStage] = useState(0);
   const [particles, setParticles] = useState([]);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
-    // Generate cosmic particles
+    // Generate subtle constellation
     const particleArray = [];
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 50; i++) {
       particleArray.push({
         id: i,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: Math.random() * 3 + 1,
-        delay: Math.random() * 2
+        size: Math.random() * 2 + 0.5,
+        delay: Math.random() * 4,
+        duration: 2 + Math.random() * 3
       });
     }
     setParticles(particleArray);
 
-    // Animation sequence
-    const timer1 = setTimeout(() => setStage(1), 500);
-    const timer2 = setTimeout(() => setStage(2), 1500);
-    const timer3 = setTimeout(() => setStage(3), 2500);
-    const timer4 = setTimeout(() => onComplete(), 3500);
+    // Premium animation sequence
+    const timer1 = setTimeout(() => setStage(1), 800);
+    const timer2 = setTimeout(() => setStage(2), 2000);
+    const timer3 = setTimeout(() => setStage(3), 3200);
+    const timer4 = setTimeout(() => {
+      setIsTransitioning(true);
+      // Smooth transition - fade out loader before calling onComplete
+      setTimeout(() => onComplete(), 1000);
+    }, 4500);
 
     return () => {
       clearTimeout(timer1);
@@ -33,69 +39,81 @@ const CosmicLoader = ({ onComplete }) => {
   }, [onComplete]);
 
   return (
-    <div className="fixed inset-0 z-50 bg-gradient-to-b from-slate-950 to-gray-950 flex items-center justify-center">
-      {/* Cosmic particles */}
+    <div className={`fixed inset-0 z-50 bg-black transition-opacity duration-1000 ${
+      isTransitioning ? 'opacity-0' : 'opacity-100'
+    }`}>
+      {/* Subtle constellation background */}
       <div className="absolute inset-0 overflow-hidden">
         {particles.map((particle) => (
           <div
             key={particle.id}
-            className="absolute w-1 h-1 bg-cyan-400 rounded-full animate-pulse opacity-60"
+            className="absolute rounded-full bg-white opacity-60"
             style={{
               left: `${particle.x}%`,
               top: `${particle.y}%`,
-              animationDelay: `${particle.delay}s`,
-              animationDuration: '3s'
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              animation: `twinkle ${particle.duration}s ease-in-out infinite`,
+              animationDelay: `${particle.delay}s`
             }}
           />
         ))}
       </div>
 
-      {/* Converging lines */}
-      <div className="absolute inset-0">
+      {/* Converging cosmic lines */}
+      <div className="absolute inset-0 flex items-center justify-center">
         {stage >= 1 && (
           <>
-            <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent transform -translate-y-1/2 animate-pulse" />
-            <div className="absolute top-0 left-1/2 w-px h-full bg-gradient-to-b from-transparent via-cyan-500/50 to-transparent transform -translate-x-1/2 animate-pulse" />
-            <div className="absolute top-1/2 left-1/2 w-96 h-96 border border-cyan-500/30 rounded-full transform -translate-x-1/2 -translate-y-1/2 animate-ping" />
-            <div className="absolute top-1/2 left-1/2 w-64 h-64 border border-blue-500/30 rounded-full transform -translate-x-1/2 -translate-y-1/2 animate-ping" style={{ animationDelay: '0.5s' }} />
+            {/* Horizontal line */}
+            <div className="absolute w-full h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent animate-fade-in" />
+            {/* Vertical line */}
+            <div className="absolute h-full w-px bg-gradient-to-b from-transparent via-cyan-400/40 to-transparent animate-fade-in" />
+            {/* Outer ring */}
+            <div className="absolute w-96 h-96 border border-cyan-400/20 rounded-full animate-ping" />
+            {/* Inner ring */}
+            <div className="absolute w-64 h-64 border border-blue-400/20 rounded-full animate-ping" style={{ animationDelay: '0.7s' }} />
           </>
         )}
       </div>
 
-      {/* Daiva logo with cosmic effects */}
-      <div className="relative z-10">
+      {/* Daiva logo with premium cosmic effects */}
+      <div className="absolute inset-0 flex items-center justify-center">
         {stage >= 2 && (
           <div className="text-center">
-            {/* Lens flare effect */}
+            {/* Cosmic lens flare */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-64 h-64 bg-gradient-radial from-cyan-400/20 via-blue-400/10 to-transparent rounded-full animate-pulse" />
+              <div className="w-80 h-80 bg-gradient-radial from-cyan-400/10 via-blue-400/5 to-transparent rounded-full animate-pulse" />
             </div>
             
-            {/* Pulsing logo */}
+            {/* Premium logo */}
             <div className="relative">
-              <div className="text-8xl font-light bg-gradient-to-r from-cyan-200 to-blue-200 bg-clip-text text-transparent tracking-widest animate-pulse">
+              <div className="text-9xl font-light bg-gradient-to-r from-cyan-200 via-white to-blue-200 bg-clip-text text-transparent tracking-widest animate-cosmic-entrance">
                 DAIVA
               </div>
               
-              {/* Cosmic rings around logo */}
+              {/* Elegant cosmic rings */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-96 h-24 border border-cyan-500/20 rounded-full animate-ping" />
-                <div className="absolute w-80 h-20 border border-blue-500/20 rounded-full animate-ping" style={{ animationDelay: '0.3s' }} />
+                <div className="w-[600px] h-32 border border-cyan-400/15 rounded-full animate-ping" style={{ animationDuration: '3s' }} />
+                <div className="absolute w-96 h-24 border border-blue-400/15 rounded-full animate-ping" style={{ animationDelay: '0.5s', animationDuration: '3s' }} />
               </div>
             </div>
             
+            {/* Tagline with smooth reveal */}
             {stage >= 3 && (
-              <div className="mt-8 text-cyan-300 text-lg font-light animate-fade-in">
-                Where Insight Emerges
+              <div className="mt-12 space-y-4 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+                <div className="text-cyan-300 text-xl font-light tracking-wide">
+                  Where Insight Emerges
+                </div>
+                <div className="w-32 h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent mx-auto animate-expand" />
               </div>
             )}
           </div>
         )}
       </div>
 
-      {/* Shimmer effect overlay */}
+      {/* Gentle shimmer overlay for transition */}
       {stage >= 3 && (
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-500/5 to-transparent animate-shimmer" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/3 to-transparent animate-shimmer" />
       )}
     </div>
   );
