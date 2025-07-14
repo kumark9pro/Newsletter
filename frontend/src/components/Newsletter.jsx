@@ -217,7 +217,7 @@ const Newsletter = () => {
           <LiveDataSection data={mockData.liveData} />
         </ScrollReveal>
 
-        {/* 7. Legendary Consult Daiva */}
+        {/* 7. Legendary Consult Daiva with cosmic particles */}
         <ScrollReveal delay={1400}>
           <section className="mb-96">
             <div className="text-center mb-56">
@@ -230,16 +230,33 @@ const Newsletter = () => {
             </div>
             
             <div className="max-w-4xl mx-auto">
-              <div className="group p-20 rounded-3xl bg-slate-950/15 border border-slate-800/20 hover:border-cyan-400/15 hover:bg-slate-950/20 transition-all duration-1000">
-                <div className="space-y-16">
+              <div className="group relative p-24 rounded-3xl bg-slate-950/8 border border-slate-800/20 hover:border-cyan-400/12 hover:bg-slate-950/12 transition-all duration-1000 overflow-hidden">
+                {/* Cosmic background particles on focus */}
+                <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                  {consultQuestion && [...Array(8)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute w-1 h-1 bg-cyan-400 rounded-full animate-float-up opacity-40"
+                      style={{
+                        left: `${10 + i * 10}%`,
+                        bottom: '20%',
+                        animationDelay: `${i * 0.5}s`,
+                        animationDuration: '6s'
+                      }}
+                    />
+                  ))}
+                </div>
+
+                <div className="relative space-y-20">
                   <div className="relative">
                     <Input
                       placeholder="What AI question or topic do you want Daiva to cover next?"
                       value={consultQuestion}
                       onChange={(e) => setConsultQuestion(e.target.value)}
-                      className="bg-transparent border-slate-700/20 focus:border-cyan-400/30 text-slate-100 placeholder-slate-400 text-xl py-10 px-16 rounded-full font-light transition-all duration-700 hover:border-cyan-400/20"
+                      className="bg-transparent border-2 border-slate-700/15 focus:border-cyan-400/25 text-slate-100 placeholder-slate-400 text-xl py-12 px-20 rounded-full font-light transition-all duration-1000 hover:border-cyan-400/15 focus:shadow-lg focus:shadow-cyan-400/10"
                     />
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400/2 to-blue-400/2 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+                    {/* Gentle glow on focus */}
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400/1 to-blue-400/1 opacity-0 group-focus-within:opacity-100 transition-opacity duration-1000 pointer-events-none"></div>
                   </div>
                   
                   <PremiumButton 
@@ -253,8 +270,23 @@ const Newsletter = () => {
                   </PremiumButton>
                   
                   {isSubmitted && (
-                    <div className="text-center p-16 bg-gradient-to-r from-cyan-400/6 to-blue-400/6 rounded-3xl border border-cyan-400/10 animate-fade-in-up">
-                      <p className="text-cyan-200 font-light text-xl animate-pulse">
+                    <div className="text-center p-20 bg-gradient-to-r from-cyan-400/4 to-blue-400/4 rounded-3xl border border-cyan-400/8 animate-fade-in-up relative overflow-hidden">
+                      {/* Soft particle drift in background */}
+                      <div className="absolute inset-0 pointer-events-none">
+                        {[...Array(6)].map((_, i) => (
+                          <div
+                            key={i}
+                            className="absolute w-1 h-1 bg-cyan-400 rounded-full animate-float-up opacity-30"
+                            style={{
+                              left: `${15 + i * 12}%`,
+                              bottom: '10%',
+                              animationDelay: `${i * 0.3}s`,
+                              animationDuration: '5s'
+                            }}
+                          />
+                        ))}
+                      </div>
+                      <p className="relative text-cyan-200 font-light text-xl animate-pulse">
                         Your question has been received by Daiva...
                       </p>
                     </div>
