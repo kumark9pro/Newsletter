@@ -87,11 +87,11 @@ code {
     display: none;             /* Safari and Chrome */
 }
 
-/* Enhanced animations */
+/* Enhanced animations for premium feel */
 @keyframes animate-in {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
     }
     to {
         opacity: 1;
@@ -100,17 +100,17 @@ code {
 }
 
 .animate-in {
-    animation: animate-in 0.6s ease-out;
+    animation: animate-in 0.8s ease-out;
 }
 
 .slide-in-from-top {
-    animation: slide-in-from-top 0.6s ease-out;
+    animation: slide-in-from-top 0.8s ease-out;
 }
 
 @keyframes slide-in-from-top {
     from {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(-30px);
     }
     to {
         opacity: 1;
@@ -118,7 +118,11 @@ code {
     }
 }
 
-/* Enhanced hover effects */
+/* Premium hover effects */
+.hover\:scale-101:hover {
+    transform: scale(1.01);
+}
+
 .hover\:scale-102:hover {
     transform: scale(1.02);
 }
@@ -127,40 +131,35 @@ code {
     transform: scale(1.05);
 }
 
-/* Neon glow effects */
-.neon-glow {
-    filter: drop-shadow(0 0 10px currentColor);
+/* Smooth transitions for premium feel */
+* {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
 }
 
-.neon-glow-strong {
-    filter: drop-shadow(0 0 20px currentColor);
-}
-
-/* Custom cosmic animations */
-@keyframes cosmic-pulse {
-    0%, 100% { 
-        opacity: 1;
-        transform: scale(1);
-    }
-    50% { 
-        opacity: 0.8;
-        transform: scale(1.05);
-    }
-}
-
-.cosmic-pulse {
-    animation: cosmic-pulse 2s ease-in-out infinite;
-}
-
-/* Enhanced gradient backgrounds */
-.cosmic-gradient {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-}
-
-/* Text selection styling */
+/* Premium text selection */
 ::selection {
-    background: rgba(96, 246, 255, 0.3);
-    color: #f8fafc;
+    background: rgba(96, 246, 255, 0.15);
+    color: #f1f5f9;
+}
+
+/* Minimal scrollbar */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(96, 246, 255, 0.2);
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(96, 246, 255, 0.4);
 }
 
 
