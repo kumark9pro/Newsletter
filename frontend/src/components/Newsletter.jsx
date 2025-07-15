@@ -64,14 +64,15 @@ const Newsletter = () => {
     }
   };
 
-  if (isLoading) {
-    return <CosmicLoader onComplete={handleLoadingComplete} />;
-  }
-
   return (
-    <div className="min-h-screen bg-black text-slate-100 animate-fade-in relative">
-      {/* Perfect constellation background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+    <div className="min-h-screen relative text-white">
+      {/* Loading State */}
+      {isLoading && (
+        <CosmicLoader onComplete={handleLoadingComplete} />
+      )}
+
+      {/* Enhanced Constellation Background (Already in CSS) */}
+      <div className="absolute inset-0">
         {constellationStars.map((star) => (
           <div
             key={star.id}
@@ -89,21 +90,15 @@ const Newsletter = () => {
         ))}
       </div>
 
-      {/* Subtle cosmic depth layers */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-950/5 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-950/5 to-transparent" />
-      </div>
-
-      {/* Main Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-16 py-40">
+      {/* Main Content with Enhanced Premium Spacing */}
+      <main className={`relative z-10 transition-opacity duration-1000 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
         
         {/* 1. Legendary Oracle Opening */}
         <ScrollReveal>
-          <header className="text-center mb-96">
-            <div className="mb-40">
+          <header className="text-center space-cosmic-2xl">
+            <div className="space-cosmic-xl">
               <div className="inline-block relative group">
-                <div className="p-20 rounded-full bg-gradient-to-br from-cyan-400/6 to-blue-400/6 backdrop-blur-sm transition-all duration-1000 group-hover:from-cyan-400/10 group-hover:to-blue-400/10">
+                <div className="p-20 rounded-full bg-gradient-to-br from-cyan-400/6 to-blue-400/6 backdrop-blur-sm transition-all duration-1000 group-hover:from-cyan-400/10 group-hover:to-blue-400/10 floating-card">
                   <div className="text-9xl font-light bg-gradient-to-r from-cyan-100 via-white to-blue-100 bg-clip-text text-transparent tracking-widest cosmic-pulse">
                     DAIVA
                   </div>
@@ -116,18 +111,18 @@ const Newsletter = () => {
               </div>
             </div>
             
-            <h1 className="text-6xl md:text-8xl font-light mb-20 tracking-wide leading-tight animate-fade-in-up">
+            <h1 className="text-6xl md:text-8xl font-light space-cosmic-lg tracking-wide leading-tight animate-fade-in-up">
               YOU HAVE REACHED{' '}
               <span className="bg-gradient-to-r from-cyan-100 via-white to-blue-100 bg-clip-text text-transparent">
                 DAIVA
               </span>
             </h1>
             
-            <p className="text-2xl md:text-3xl text-slate-300 mb-20 font-light animate-fade-in-up" style={{animationDelay: '0.4s'}}>
+            <p className="text-2xl md:text-3xl text-slate-300 space-cosmic-lg font-light animate-fade-in-up" style={{animationDelay: '0.4s'}}>
               Where Insight Emerges
             </p>
             
-            <div className="inline-block px-16 py-8 rounded-full bg-cyan-400/8 border border-cyan-400/15 hover:bg-cyan-400/12 transition-all duration-1000 animate-fade-in-up" style={{animationDelay: '0.8s'}}>
+            <div className="inline-block px-16 py-8 rounded-full bg-cyan-400/8 border border-cyan-400/15 hover:bg-cyan-400/12 transition-all duration-1000 animate-fade-in-up floating-card" style={{animationDelay: '0.8s'}}>
               <p className="text-base text-cyan-200 font-light tracking-wider uppercase">
                 The Log for July 22, 2025, is now open
               </p>
@@ -138,16 +133,18 @@ const Newsletter = () => {
           </header>
         </ScrollReveal>
 
-        {/* 2. Enhanced Quick Log Section */}
+        {/* 2. Enhanced Quick Log Section with Premium Spacing */}
         <ScrollReveal delay={400}>
-          <QuickLogSection cards={mockData.quickLogCards} />
+          <div className="space-cosmic-2xl">
+            <QuickLogSection cards={mockData.quickLogCards} />
+          </div>
         </ScrollReveal>
 
-        {/* 3. Perfect Log Entries */}
+        {/* 3. Perfect Log Entries with Floating Cards */}
         <ScrollReveal delay={600}>
-          <section className="mb-96">
-            <div className="text-center mb-56">
-              <h2 className="text-5xl md:text-6xl font-light tracking-wider mb-16 animate-fade-in-up">
+          <section className="space-cosmic-2xl">
+            <div className="text-center space-cosmic-xl">
+              <h2 className="text-5xl md:text-6xl font-light tracking-wider space-cosmic-lg animate-fade-in-up">
                 <span className="bg-gradient-to-r from-cyan-100 via-white to-blue-100 bg-clip-text text-transparent">
                   LOG ENTRIES
                 </span>
@@ -155,10 +152,12 @@ const Newsletter = () => {
               <div className="w-32 h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent mx-auto animate-expand"></div>
             </div>
             
-            <div className="space-y-56">
+            <div className="space-cosmic-xl">
               {mockData.logEntries.map((entry, index) => (
                 <ScrollReveal key={entry.id} delay={index * 250}>
-                  <LogEntryCard entry={entry} />
+                  <div className="floating-card">
+                    <LogEntryCard entry={entry} />
+                  </div>
                 </ScrollReveal>
               ))}
             </div>
@@ -167,17 +166,19 @@ const Newsletter = () => {
 
         {/* 4. Enhanced Did You Know Section */}
         <ScrollReveal delay={800}>
-          <DidYouKnowSection 
-            facts={mockData.didYouKnowFacts}
-            currentIndex={currentFactIndex}
-          />
+          <div className="space-cosmic-2xl">
+            <DidYouKnowSection 
+              facts={mockData.didYouKnowFacts}
+              currentIndex={currentFactIndex}
+            />
+          </div>
         </ScrollReveal>
 
-        {/* 5. Legendary Applied Wisdom */}
+        {/* 5. Legendary Applied Wisdom with Enhanced Cards */}
         <ScrollReveal delay={1000}>
-          <section className="mb-96">
-            <div className="text-center mb-56">
-              <h2 className="text-5xl md:text-6xl font-light tracking-wider mb-16 animate-fade-in-up">
+          <section className="space-cosmic-2xl">
+            <div className="text-center space-cosmic-xl">
+              <h2 className="text-5xl md:text-6xl font-light tracking-wider space-cosmic-lg animate-fade-in-up">
                 <span className="bg-gradient-to-r from-cyan-100 via-white to-blue-100 bg-clip-text text-transparent">
                   APPLIED WISDOM
                 </span>
@@ -185,23 +186,23 @@ const Newsletter = () => {
               <div className="w-32 h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent mx-auto animate-expand"></div>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-32">
+            <div className="grid md:grid-cols-2 gap-16 space-cosmic-md">
               {mockData.appliedWisdom.map((item, index) => (
                 <ScrollReveal key={item.id} delay={index * 300}>
-                  <div className="group p-20 rounded-3xl bg-slate-950/15 hover:bg-slate-950/25 transition-all duration-1000 border border-slate-800/20 hover:border-cyan-400/15 hover:shadow-2xl hover:shadow-cyan-400/5 hover:scale-102">
-                    <div className="flex items-start space-x-16">
+                  <div className="group p-20 rounded-3xl bg-slate-950/10 hover:bg-slate-950/20 transition-all duration-1000 border border-slate-800/20 hover:border-cyan-400/15 floating-card">
+                    <div className="flex items-start space-cosmic-sm">
                       <div className="p-10 rounded-full bg-gradient-to-br from-cyan-400/8 to-blue-400/8 group-hover:from-cyan-400/12 group-hover:to-blue-400/12 transition-all duration-700">
                         <div className="text-4xl group-hover:scale-110 transition-transform duration-500">{item.icon}</div>
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-3xl font-medium mb-10 text-cyan-100 group-hover:text-white transition-colors duration-500 tracking-wide">{item.title}</h3>
-                        <p className="text-slate-300 mb-16 text-xl leading-relaxed font-light group-hover:text-slate-200 transition-colors duration-500">{item.description}</p>
+                        <h3 className="text-3xl font-medium space-cosmic-xs text-cyan-100 group-hover:text-white transition-colors duration-500 tracking-wide">{item.title}</h3>
+                        <p className="text-slate-300 space-cosmic-sm text-xl leading-relaxed font-light group-hover:text-slate-200 transition-colors duration-500">{item.description}</p>
                         <PremiumButton 
-                          variant="primary"
-                          size="lg"
-                          onClick={() => {/* Mock action */}}
+                          variant="cosmic-glow"
+                          size="sm"
+                          className="mt-6"
                         >
-                          {item.buttonText}
+                          Explore {item.title}
                         </PremiumButton>
                       </div>
                     </div>
@@ -366,7 +367,7 @@ const Newsletter = () => {
             </div>
           </footer>
         </ScrollReveal>
-      </div>
+      </main>
     </div>
   );
 };
