@@ -10,6 +10,7 @@ import LiveDataSection from './LiveDataSection';
 import ScrollReveal from './ScrollReveal';
 import CosmicLoader from './CosmicLoader';
 import PremiumButton from './PremiumButton';
+import { CosmicIcon } from './CosmicIcons';
 import { mockData } from '../data/mockData';
 
 const Newsletter = () => {
@@ -186,24 +187,31 @@ const Newsletter = () => {
               <div className="w-32 h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent mx-auto animate-expand"></div>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-16 space-cosmic-md">
+            <div className="grid md:grid-cols-2 gap-8 space-cosmic-md max-w-6xl mx-auto">
               {mockData.appliedWisdom.map((item, index) => (
                 <ScrollReveal key={item.id} delay={index * 300}>
-                  <div className="group p-20 rounded-3xl bg-slate-950/10 hover:bg-slate-950/20 transition-all duration-1000 border border-slate-800/20 hover:border-cyan-400/15 floating-card">
-                    <div className="flex items-start space-cosmic-sm">
-                      <div className="p-10 rounded-full bg-gradient-to-br from-cyan-400/8 to-blue-400/8 group-hover:from-cyan-400/12 group-hover:to-blue-400/12 transition-all duration-700">
-                        <div className="text-4xl group-hover:scale-110 transition-transform duration-500">{item.icon}</div>
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-3xl font-medium space-cosmic-xs text-cyan-100 group-hover:text-white transition-colors duration-500 tracking-wide">{item.title}</h3>
-                        <p className="text-slate-300 space-cosmic-sm text-xl leading-relaxed font-light group-hover:text-slate-200 transition-colors duration-500">{item.description}</p>
-                        <PremiumButton 
-                          variant="cosmic-glow"
-                          size="sm"
-                          className="mt-6"
-                        >
-                          Explore {item.title}
-                        </PremiumButton>
+                  <div className="group card-cosmic-width mx-auto">
+                    <div className="p-8 rounded-3xl bg-slate-950/10 hover:bg-slate-950/20 transition-all duration-1000 border border-slate-800/20 hover:border-cyan-400/15 floating-card h-full">
+                      <div className="flex items-start space-x-6 h-full">
+                        <div className="p-6 rounded-full bg-gradient-to-br from-cyan-400/8 to-blue-400/8 group-hover:from-cyan-400/12 group-hover:to-blue-400/12 transition-all duration-700 border border-cyan-400/15">
+                          <CosmicIcon 
+                            category={item.category} 
+                            size={32}
+                            className="group-hover:scale-110 transition-transform duration-500"
+                            showGlow={true}
+                          />
+                        </div>
+                        <div className="flex-1 flex flex-col h-full">
+                          <h3 className="text-2xl font-medium mb-4 text-cyan-100 group-hover:text-white transition-colors duration-500 tracking-wide">{item.title}</h3>
+                          <p className="text-slate-300 mb-6 text-lg leading-relaxed font-light group-hover:text-slate-200 transition-colors duration-500 flex-grow">{item.description}</p>
+                          <PremiumButton 
+                            variant="cosmic-glow"
+                            size="sm"
+                            className="self-start"
+                          >
+                            {item.buttonText}
+                          </PremiumButton>
+                        </div>
                       </div>
                     </div>
                   </div>
