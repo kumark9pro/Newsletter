@@ -12,6 +12,24 @@ module.exports = {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
+  		spacing: {
+  			'cosmic-xs': 'var(--cosmic-spacing-xs)',
+  			'cosmic-sm': 'var(--cosmic-spacing-sm)',
+  			'cosmic-md': 'var(--cosmic-spacing-md)',
+  			'cosmic-lg': 'var(--cosmic-spacing-lg)',
+  			'cosmic-xl': 'var(--cosmic-spacing-xl)',
+  			'cosmic-2xl': 'var(--cosmic-spacing-2xl)',
+  		},
+  		animation: {
+  			'cosmic-drift': 'cosmic-drift 20s ease-in-out infinite',
+  			'stellar-movement': 'stellar-movement 40s linear infinite',
+  			'cosmic-glow': 'cosmic-glow 2s ease-in-out infinite',
+  			'gradient-shift': 'gradient-shift 3s ease infinite',
+  			'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
+  		},
+  		fontFamily: {
+  			'inter': ['Inter', 'sans-serif'],
+  		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
